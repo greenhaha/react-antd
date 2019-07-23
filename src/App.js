@@ -1,62 +1,36 @@
-import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Layout, Menu, Icon } from 'antd';
+import React, { Component } from 'react';
+// import logo from './logo.svg';
+// import './App.css';
+// import { Layout, Menu, Icon } from 'antd';
+import {
+  Route,
+  Link,
+  Switch
+} from 'react-router-dom';
 
-const { Header, Sider, Content } = Layout;
+import NavReactRedux from './NavReactRedux.js';
+import LoginReactRedux from './page/login/LoginReactRedux.js';
+import HomeReactRedux from './page/home/HomeReactRedux';
+import About from './page/about/About.js';
+import NewsReactRedux from './page/news/NewsReactRedux.js';
+import NotFind from './page/notFind/NotFind'
 class App extends Component {
-  state = {
-    collapsed: false,
-  };
-
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  };
-  render(){
+  render() {
     return (
-      <Layout>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
-              <Icon type="user" />
-              <span>nav 1</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="video-camera" />
-              <span>nav 2</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Icon type="upload" />
-              <span>nav 3</span>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout>
-          <Header style={{ background: '#fff', padding: 0 }}>
-            <Icon
-              className="trigger"
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            />
-          </Header>
-          <Content
-            style={{
-              margin: '24px 16px',
-              padding: 24,
-              background: '#fff',
-              minHeight: 280,
-            }}
-          >
-            Content
-          </Content>
-        </Layout>
-      </Layout>
+      <div className="App">
+        <NavReactRedux />
+        <div>
+          <Switch>
+            <Route exact path="/" component={LoginReactRedux} />
+            <Route exact path="/Home" component={HomeReactRedux} />
+            <Route path="/About" component={About} />
+            <Route path="/News" component={NewsReactRedux} />
+            <Route component={NotFind} />
+          </Switch>
+        </div>
+      </div>
     );
   }
-  
 }
 
 export default App;
