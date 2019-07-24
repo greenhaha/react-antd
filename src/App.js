@@ -1,36 +1,73 @@
-import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-// import { Layout, Menu, Icon } from 'antd';
-import {
-  Route,
-  Link,
-  Switch
-} from 'react-router-dom';
+import React, { Component ,Fragment} from 'react';
+import { Layout, Icon } from 'antd';
+import { connect } from 'react-redux';
+import Menus from './component/menu/menu'
+import {Routers, NotLoginRoutes} from './routers'
+import './App.css'
+const { Header, Sider, Content } = Layout;
 
-import NavReactRedux from './NavReactRedux.js';
-import LoginReactRedux from './page/login/LoginReactRedux.js';
-import HomeReactRedux from './page/home/HomeReactRedux';
-import About from './page/about/About.js';
-import NewsReactRedux from './page/news/NewsReactRedux.js';
-import NotFind from './page/notFind/NotFind'
 class App extends Component {
+  state = {
+    collapsed: false,
+};
+
+toggle = () => {
+    this.setState({
+        collapsed: !this.state.collapsed,
+    });
+};
   render() {
     return (
-      <div className="App">
-        <NavReactRedux />
-        <div>
-          <Switch>
-            <Route exact path="/" component={LoginReactRedux} />
-            <Route exact path="/Home" component={HomeReactRedux} />
-            <Route path="/About" component={About} />
-            <Route path="/News" component={NewsReactRedux} />
-            <Route component={NotFind} />
-          </Switch>
-        </div>
-      </div>
+        <Fragment>
+        {this.props.isLogin?
+            
+            <Layout style={{minHeight:'100vh'}}>
+                <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+                    <div className="logo" />
+                    <Menus />
+                </Sider>
+                <Layout>
+                    <Header style={{ background: '#fff', padding: 0 }}>
+                        <Icon
+                            className="trigger"
+                            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                            onClick={this.toggle}
+                        />
+                    </Header>
+                    <Content
+                        style={{
+                            margin: '24px 16px',
+                            padding: 24,
+                            background: '#fff',
+                            minHeight: 280,
+                        }}
+                    >
+                        <Routers />
+                    </Content>
+                </Layout>
+            </Layout>:
+            <div style={{width:'100%', minHeight:'100vh',display:'flex',justifyContent:'center', alignItems:'center'}}>
+                <NotLoginRoutes />
+            </div>
+        }
+        </Fragment>
+        
+      
     );
   }
 }
 
-export default App;
+//=====react-redux 封装组件=====
+
+// 哪些 Redux 全局的 state 是我们组件想要通过 props 获取的？
+function mapStateToProps(state) {
+	return {
+		isLogin:state.isLogin
+	}
+}
+
+// 哪些 action 创建函数是我们想要通过 props 获取的？
+function mapDispatchToProps(dispatch) {
+	return {};
+}
+export default connect(mapStateToProps,mapDispatchToProps)(App);

@@ -1,36 +1,74 @@
 import React, { Component } from 'react';
-
+import { Card, Form, Icon, Input, Button, Checkbox } from 'antd';
+import './Login.css'
 //=====组件=====
 
-class Login extends Component {
-	
+class LoginForm extends Component {
+	goLogin = e => {
+		console.log(this.props)
+		e.preventDefault();
+		let _this = this
+		this.props.form.validateFields((err, values) => {
+			if (!err) {
+				console.log('Received values of form: ', values);
+				_this.props.GOLOGIN(values.username, values.password, _this.props.history);
+			}
+		});
+		
+	}
+
+	componentDidMount() {
+		console.log("Login渲染完毕")
+	}
 	render() {
+		const { getFieldDecorator } = this.props.form;
 		return (
-			<div>
-				<h3>登录页面</h3>
-				<div>
-					用户名<input type="text" ref="username" />
-				</div>
-				<div>
-					密码<input type="password" ref="password" />
-				</div>
-				<div>
-					<button onClick={this.goLogin.bind(this)}>登录</button>
-				</div>
-			</div>
+			<Card style={{ width: 350,height:350 }}>
+				<h2 style={{textAlign:"center"}}>login</h2>
+				<Form onSubmit={this.goLogin} className="login-form">
+					<Form.Item>
+						{getFieldDecorator('username', {
+							rules: [{ required: true, message: 'Please input your username!' }],
+						})(
+							<Input
+								prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+								placeholder="Username"
+							/>,
+						)}
+					</Form.Item>
+					<Form.Item>
+						{getFieldDecorator('password', {
+							rules: [{ required: true, message: 'Please input your Password!' }],
+						})(
+							<Input
+								prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+								type="password"
+								placeholder="Password"
+							/>,
+						)}
+					</Form.Item>
+					<Form.Item>
+						{getFieldDecorator('remember', {
+							valuePropName: 'checked',
+							initialValue: true,
+						})(<Checkbox>Remember me</Checkbox>)}
+						<a className="login-form-forgot" href="">
+							Forgot password
+          </a>
+						<Button type="primary" htmlType="submit" style={{width:'100%'}} className="login-form-button">
+							Log in
+          </Button>
+						Or <a href="">register now!</a>
+					</Form.Item>
+				</Form>
+			</Card>
 		);
 	}
-	
-	goLogin(){
-        console.log(this.props)
-		this.props.GOLOGIN(this.refs.username.value,this.refs.password.value,this.props.history);
-	}
-	
-	componentDidMount() {
-	  	console.log("Login渲染完毕")
-	}
-	
+
+
+
 }
 
+const Login = Form.create({ name: 'normal_login' })(LoginForm);
 
 export default Login

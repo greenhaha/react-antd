@@ -8,9 +8,9 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 //创建状态树和设置
-import rootRedux from './rootRedux.js'
+import {rootRedux, midderware} from './store/rootRedux.js'
 //生成状态树对象
-const store = createStore(rootRedux);
+const store = createStore(rootRedux, midderware);
 
 
 ReactDOM.render(
