@@ -16,7 +16,6 @@ export function Routers() {
             <div>
                 <Switch>
                     <Route exact path="/" component={HomeReactRedux} />
-                    <Route exact path="/Home" component={HomeReactRedux} />
                     <Route exact path="/About" component={About} />
                     <Route exact path="/News" component={NewsReactRedux} />
                     <Route component={NotFind} />
@@ -28,8 +27,9 @@ export function Routers() {
 export function NotLoginRoutes () {
         return (
                 <Switch>
-                    <Route path="/" component={LoginReactRedux} />
-                    <Route component={NotFind} />
+                    <Route path="/login" component={LoginReactRedux} />
+                    <Redirect to='/login'/>
+                    {/* <Route component={NotFind} /> */}
                 </Switch>
         );
     }

@@ -2,9 +2,10 @@ import React, { Component ,Fragment} from 'react';
 import { Layout, Icon } from 'antd';
 import { connect } from 'react-redux';
 import Menus from './component/menu/menu'
+import HeadersReactRedux from './component/header/headerReactRedux'
 import {Routers, NotLoginRoutes} from './routers'
 import './App.css'
-const { Header, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 class App extends Component {
   state = {
@@ -27,13 +28,7 @@ toggle = () => {
                     <Menus />
                 </Sider>
                 <Layout>
-                    <Header style={{ background: '#fff', padding: 0 }}>
-                        <Icon
-                            className="trigger"
-                            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                            onClick={this.toggle}
-                        />
-                    </Header>
+                    <HeadersReactRedux toggleHeaders={()=>this.toggle()}/>
                     <Content
                         style={{
                             margin: '24px 16px',

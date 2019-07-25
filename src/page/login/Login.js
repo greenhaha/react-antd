@@ -10,6 +10,7 @@ class LoginForm extends Component {
 		let _this = this
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
+				sessionStorage.setItem("loginFlag", true)
 				console.log('Received values of form: ', values);
 				_this.props.GOLOGIN(values.username, values.password, _this.props.history);
 			}

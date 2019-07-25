@@ -7,7 +7,7 @@ class Home extends Component {
 	
 	render() {
 		if( this.props.isLogin==false){
-			return <Redirect to="/" />
+			return <Redirect to="/login" />
 		}
 		
 		return (
