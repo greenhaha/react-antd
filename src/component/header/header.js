@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Layout, Icon, Menu, Dropdown, message, Avatar, Badge} from 'antd';
+import {Redirect} from 'react-router-dom';
 const { Header } = Layout;
 
 class Headers extends PureComponent {
@@ -18,10 +19,12 @@ class Headers extends PureComponent {
     }
     
     render() {
+        let _this = this
         const onClick = ({ key }) => {
             message.info(`Click on item ${key}`);
             if(key == 3){
-                this.props.OUTLOGIN(this.props.history);
+                _this.props.OUTLOGIN(_this.props.history);
+                sessionStorage.setItem('loginFlag',false)
             }
           };
           

@@ -18,9 +18,10 @@ toggle = () => {
     });
 };
   render() {
+      console.log(sessionStorage.getItem("loginFlag") == true)
     return (
         <Fragment>
-        {this.props.isLogin?
+        {sessionStorage.getItem("loginFlag") == 'true'?
             
             <Layout style={{minHeight:'100vh'}}>
                 <Sider trigger={null} collapsible collapsed={this.state.collapsed}>

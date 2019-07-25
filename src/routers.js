@@ -18,6 +18,7 @@ export function Routers() {
                     <Route exact path="/" component={HomeReactRedux} />
                     <Route exact path="/About" component={About} />
                     <Route exact path="/News" component={NewsReactRedux} />
+                    <Route exact path="/login" component={LoginReactRedux} />
                     <Route component={NotFind} />
                 </Switch>
             </div>

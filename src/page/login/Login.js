@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Form, Icon, Input, Button, Checkbox } from 'antd';
+import {Redirect} from 'react-router-dom';
 import './Login.css'
 //=====组件=====
 
@@ -22,6 +23,10 @@ class LoginForm extends Component {
 		console.log("Login渲染完毕")
 	}
 	render() {
+		console.log(sessionStorage.getItem("loginFlag") == 'true')
+		// if(sessionStorage.getItem("loginFlag") == 'true'){
+		// 	return <Redirect to="/" />
+		// }
 		const { getFieldDecorator } = this.props.form;
 		return (
 			<Card style={{ width: 350,height:350 }}>
