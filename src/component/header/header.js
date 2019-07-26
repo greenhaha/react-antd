@@ -45,6 +45,7 @@ class Headers extends PureComponent {
         return (
             <Header style={{ background: '#fff', padding: 0 }}>
                 <Icon
+                    style={{marginLeft:'1rem'}}
                     className="trigger"
                     type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                     onClick={this.toggle}
@@ -53,7 +54,7 @@ class Headers extends PureComponent {
                 <Badge count={1} dot >
                 <Icon type="notification" />
                 </Badge>
-                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" style={{marginLeft:'1.25rem'}}/>
+                <Avatar src="https://hlymcn.cn/images/avatar.gif" style={{marginLeft:'1.25rem', marginRight:'.5rem'}}/>
                 <Dropdown overlay={menu}>
                 
                     <a className="ant-dropdown-link" href="#">

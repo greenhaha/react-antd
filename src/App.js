@@ -25,7 +25,7 @@ toggle = () => {
             
             <Layout style={{minHeight:'100vh'}}>
                 <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-                    <div className="logo" />
+                    <div className="logo" style={{height:'32px', background:'rgba(255, 255, 255, 0.2)', margin:'16px'}}/>
                     <Menus />
                 </Sider>
                 <Layout>
