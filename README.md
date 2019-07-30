@@ -10,6 +10,9 @@ UI：antd-design [蚂蚁金服](https://ant.design/docs/react/introduce-cn)
 api调用：[axios](http://www.axios-js.com/)
 
 由于antd的样式使用的less语法 本工程支持css  以及 less  如需要scss 需要独自配置
+##效果图展示
+
+![react-antd](https://ucarecdn.com/0ff3bbb6-851a-485c-9806-2c229cc409a8/ "效果图")
 
 ## 运行方式
 
